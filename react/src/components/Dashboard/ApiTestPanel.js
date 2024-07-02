@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 import {
   Box,
+  Button,
   ColumnLayout,
   Container,
   Header,
-  SpaceBetween,
-  Button,
   Select,
+  SpaceBetween,
   TextContent,
 } from "@awsui/components-react";
+import React, { useEffect, useState } from "react";
 
 import config from "../../config.json";
 const useLocal = config.USE_LOCAL_API;
@@ -25,8 +26,9 @@ export default function ApiTestPanel({ keys }) {
   const [keyValue, setKeyValue] = useState();
 
   useEffect(() => { 
+    const unmarshalledKeys = keys.map(key => unmarshall(key));
     setKeyOptions(
-      keys.map((item) => ({
+      unmarshalledKeys.map((item) => ({
         label: item.name, 
         value: item.value,
       }))

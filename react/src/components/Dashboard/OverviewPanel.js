@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   ColumnLayout,
@@ -6,9 +5,13 @@ import {
   Header,
   Link,
 } from "@awsui/components-react";
+import React from "react";
 import EmptyState from "../Navigation/EmptyState";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
 
 export default function OverviewPanel({ plans, keys }) {
+  const unmarshalledPlans = plans.map(plan => unmarshall(plan));
+  const unmarshalledKeys = keys.map(key => unmarshall(key));
 
   return (
     <Container
@@ -18,14 +21,14 @@ export default function OverviewPanel({ plans, keys }) {
         </Header>
       }
     >
-      <ColumnLayout columns={plans.length}>
-        {plans ? (
-          plans.map((plan) => {
+      <ColumnLayout columns={unmarshalledPlans.length}>
+        {unmarshalledPlans.length > 0 ? (
+          unmarshalledPlans.map((plan) => {
             return (
               <div key={plan.id}>
                 <Box>{plan.name}</Box>
                 <Link fontSize="display-l" href="#">
-                  {keys.filter((key) => key.planId === plan.id).length}
+                  {unmarshalledKeys.filter((key) => key.planId === plan.id).length}
                 </Link>
               </div>
             );
