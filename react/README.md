@@ -74,3 +74,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### common issues: ###
+
+- Whenever issues are with the Jwt token set when calling the API, make sure Method request settings is configured correctly on your endpoints. 
+
+When using an Authorizer make sure the `CognitoUserPoolID` choosed is correct.
+
+

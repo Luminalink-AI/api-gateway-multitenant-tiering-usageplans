@@ -23,6 +23,8 @@ See [INSTALL](./INSTALL.md)
 ## Walkthrough
 See [WALKTHROUGH](./WALKTHROUGH.md)
 
+## API Gateway Endpoints
+See [ENDPOINTS](./ENDPOINTS.md)
 
 ## Enable Pooling
 See [POOLING_AKI_KEYS](./POOLING_AKI_KEYS.md)
