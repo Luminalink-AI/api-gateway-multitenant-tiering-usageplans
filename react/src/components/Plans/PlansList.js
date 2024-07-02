@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+import { useCollection } from "@awsui/collection-hooks";
 import {
   Button,
   Header,
   Table,
 } from "@awsui/components-react";
-import { useCollection } from "@awsui/collection-hooks";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-import { getPlans } from "./PlanService";
 import EmptyState from "../Navigation/EmptyState";
+import { getPlans } from "./PlanService";
 
 const COLUMN_DEFINITIONS = [
   {
@@ -97,7 +98,8 @@ export default function PlansList({user, setNotifications}) {
   useEffect(() => {
     setLoading(true);
     getPlans(user).then((items) => {
-      setPlans(items);
+      const unmarshalledItems = items.map(item => unmarshall(item));
+      setPlans(unmarshalledItems);
     }).catch((reason) => console.error("getPlans() failed: ", reason))
     .finally(()=>setLoading(false));
   }, [user]);
@@ -136,4 +138,3 @@ export default function PlansList({user, setNotifications}) {
     ></Table>
   );
 }
-
