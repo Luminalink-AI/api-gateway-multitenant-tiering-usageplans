@@ -17,8 +17,8 @@ const {
 	makeid,
 } = require('./utils');
 
-const dynamo = new DynamoDBClient({ region: 'eu-north-1' }); // replace REGION with your AWS region
-var apigateway = new APIGatewayClient({ region: 'eu-north-1' }); // replace REGION with your AWS region
+const dynamo = new DynamoDBClient({ region: 'eu-north-1' }); 
+var apigateway = new APIGatewayClient({ region: 'eu-north-1' }); 
 
 exports.handler = async function (event, context) {
 	console.log('Received event:', JSON.stringify(event, null, 2));
