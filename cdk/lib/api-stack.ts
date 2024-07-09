@@ -7,8 +7,8 @@ import * as kms from 'aws-cdk-lib/aws-kms';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import {
-  AwsCustomResource,
-  PhysicalResourceId,
+	AwsCustomResource,
+	PhysicalResourceId,
 } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 
@@ -136,8 +136,8 @@ export class ApiStack extends Stack {
 				statements: [
 					new iam.PolicyStatement({
 						effect: iam.Effect.ALLOW,
-						actions: ['dynamodb:PutItem', 'dynamodb:GetItem'],
-						resources: [plans.tableArn, keys.tableArn, credits.tableArn],
+						actions: ['dynamodb:PutItem', 'dynamodb:GetItem', 'dynamodb:Query', 'dynamodb:UpdateItem'],
+						resources: [plans.tableArn, keys.tableArn, credits.tableArn, `${credits.tableArn}/index/keyId-index`],
 					}),
 					allowKMSKeyUse,
 					apiGatewayPolicy,
@@ -288,6 +288,7 @@ export class ApiStack extends Stack {
 			environment: {
 				PLANS_TABLE_NAME: plans.tableName,
 				KEYS_TABLE_NAME: keys.tableName,
+				CREDITS_TABLE_NAME: credits.tableName
 			},
 			deadLetterQueueEnabled: false,
 		});

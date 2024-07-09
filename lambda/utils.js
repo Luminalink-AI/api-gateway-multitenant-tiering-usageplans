@@ -27,7 +27,7 @@ exports.goodResponse = (body) => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Headers':
-				'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+			'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
 			'Access-Control-Allow-Methods': '*',
 			'Access-Control-Allow-Origin': '*',
 		},
@@ -45,7 +45,7 @@ exports.internalServerErrorResponse = () => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Headers':
-				'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+			'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
 			'Access-Control-Allow-Origin': '*',
 		},
 		isBase64Encoded: false,

@@ -1,20 +1,17 @@
-
-
-
 A table that lists the endpoints from API stack, indicates whether they are secured or not.
 
 ## Current Endpoints 
 
-| Endpoint                  | Method | Secured (Cognito) | API Key Required | Category      | Special Criteria/Notes                  |
-|---------------------------|--------|-------------------|------------------|--------------|-----------------------------------------|
-| `/api`                    | GET    | No                | Yes              | General Consumer       | Basic health check, secured with API key |
-| `/admin/plans`            | GET    | Yes               | No               | Plans Actions | Requires Cognito auth         |
-| `/admin/plans/{id}`       | GET    | Yes               | No               | Plans Actions | Requires Cognito auth         |
-| `/admin/keys`             | GET    | Yes               | No               | Key Actions   | Requires Cognito auth         |
-| `/admin/keys`             | POST   | Yes               | No               | Key Actions   | Requires Cognito auth         |
-| `/admin/keys/{id}`        | GET    | Yes               | No               | Key Actions   | Requires Cognito auth         |
-| `/admin/keys/{id}`        | PUT    | Yes               | No               | Key Actions   | Requires Cognito auth         |
-| `/admin/keys/{id}`        | DELETE | Yes               | No               | Key Actions   | Requires Cognito auth         |
+| Endpoint                  | Method | Secured (Cognito) | API Key Required | Category      | Query | Body | Headers | Special Criteria/Notes                  |
+|---------------------------|--------|-------------------|------------------|--------------|-------|------|---------|-----------------------------------------|
+| `/api`                    | GET    | No                | Yes              | General Consumer       |       |      |         | Basic health check, secured with API key |
+| `/admin/plans`            | GET    | Yes               | No               | Plans Actions |       |      |         | Requires Cognito auth         |
+| `/admin/plans/{id}`       | GET    | Yes               | No               | Plans Actions |       |      |         | Requires Cognito auth         |
+| `/admin/keys`             | GET    | Yes               | No               | Key Actions   |       |      |         | Requires Cognito auth         |
+| `/admin/keys`             | POST   | Yes               | No               | Key Actions   |       |      |         | Requires Cognito auth         |
+| `/admin/keys/{id}`        | GET    | Yes               | No               | Key Actions   |       |      |         | Requires Cognito auth         |
+| `/admin/keys/{id}`        | PUT    | Yes               | No               | Key Actions   |       |      |         | Requires Cognito auth         |
+| `/admin/keys/{id}`        | DELETE | Yes               | No               | Key Actions   |       |      |         | Requires Cognito auth         |
 
 ## Auth Endpoints ( to check )
 
@@ -37,15 +34,15 @@ A table that lists the endpoints from API stack, indicates whether they are secu
 | `/billing/update-payment-method` | POST   | Yes               | No               | Billing Actions        | Updates the tenant's payment method.                 | No         |
 
 ## Extra admin endpoints including credits endpoints and payments endpoints and notificaitons : 
-| Endpoint                         | Method | Secured (Cognito) | API Key Required | Category               | Description                                          | Done       |
-|----------------------------------|--------|-------------------|------------------|------------------------|------------------------------------------------------|------------|
-| `/admin/plans/subscribe`               | POST   | Yes               | No               | Plans Actions          | Subscribes the tenant to a new plan.                 | No         |
-| `/admin/plans/cancel`                  | POST   | Yes               | No               | Plans Actions          | Cancels the tenant's subscription plan.              | No         |
-| `/admin/credits/balance`               | GET    | Yes               | No               | Credits Actions        | Retrieves the current credit balance for the authenticated tenant. | No   |
-| `/admin/credits/purchase`              | POST   | Yes               | No               | Payments Actions       | Allows a tenant to purchase additional credits. Interacts with a payment gateway. | No |
-| `/admin/credits/usage`                 | GET    | Yes               | No               | Credits Actions        | Retrieves a report of credit consumption by the tenant. | No     |
-| `/admin/credits/update`                | PUT    | Yes               | No               | Credits Actions        | Updates the credit balance for the tenant, typically after a successful purchase. | No |
-| `/payments/create-intent`        | POST   | Yes               | No               | Payments Actions       | Creates a payment intent with the payment gateway for purchasing credits. | No |
-| `/payments/webhook`              | POST   | No                | No               | Payments Actions       | Webhook endpoint for receiving payment confirmation from the payment gateway. | No |
-| `/notifications/low-credit`      | POST   | Yes               | No               | Notifications Actions  | Sends a notification to the tenant when their credit balance is low. | No   |
-| `/notifications/high-usage`      | POST   | Yes               | No               | Notifications Actions  | Sends a notification to the tenant when their credit usage is high. | No   |
+| Endpoint                         | Method | Secured (Cognito) | API Key Required | Category               | Query | Body | Headers | Description                                          | Done       |
+|----------------------------------|--------|-------------------|------------------|------------------------|-------|------|---------|------------------------------------------------------|------------|
+| `/admin/plans/subscribe`         | POST   | Yes               | No               | Plans Actions          |       |      |         | Subscribes the tenant to a new plan.                 | No         |
+| `/admin/plans/cancel`            | POST   | Yes               | No               | Plans Actions          |       |      |         | Cancels the tenant's subscription plan.              | No         |
+| `/admin/credits/balance`         | GET    | Yes               | No               | Credits Actions        |       |      |         | Retrieves the current credit balance for the authenticated tenant. | No   |
+| `/admin/credits/purchase`        | POST   | Yes               | No               | Payments Actions       |       |      |         | Allows a tenant to purchase additional credits. Interacts with a payment gateway. | No |
+| `/admin/credits/usage`           | GET    | Yes               | No               | Credits Actions        |       |      |         | Retrieves a report of credit consumption by the tenant. | No     |
+| `/admin/credits/update`          | PUT    | Yes               | No               | Credits Actions        |       |      |         | Updates the credit balance for the tenant, typically after a successful purchase. | No |
+| `/payments/create-intent`        | POST   | Yes               | No               | Payments Actions       |       |      |         | Creates a payment intent with the payment gateway for purchasing credits. | No |
+| `/payments/webhook`              | POST   | No                | No               | Payments Actions       |       |      |         | Webhook endpoint for receiving payment confirmation from the payment gateway. | No |
+| `/notifications/low-credit`      | POST   | Yes               | No               | Notifications Actions  |       |      |         | Sends a notification to the tenant when their credit balance is low. | No   |
+| `/notifications/high-usage`      | POST   | Yes               | No               | Notifications Actions  |       |      |         | Sends a notification to the tenant when their credit usage is high. | No   |

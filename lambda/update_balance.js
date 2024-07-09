@@ -60,7 +60,7 @@ async function updateBalance(tableName, keyId, newBalance) {
             Key: { 'id': { S: primaryKey } },
             UpdateExpression: 'SET balance = :newBalance',
             ExpressionAttributeValues: {
-                ':newBalance': { N: newBalance },
+                ':newBalance': { N: Number(newBalance).toString() }, // convert newBalance to a number
             },
             ReturnValues: 'UPDATED_NEW',
         })
@@ -68,5 +68,6 @@ async function updateBalance(tableName, keyId, newBalance) {
 
     console.log('Update result: ', JSON.stringify(updateResult, null, 2));
 
-    return goodResponse('Balance updated');
+    // Return a JSON object with the keyId and the new balance
+    return goodResponse(JSON.stringify({ keyId, balance: newBalance }));
 }

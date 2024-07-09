@@ -15,6 +15,7 @@ exports.handler = async function(event) {
       }
     ]
   }
+  
   return { 
     "isBase64Encoded": false,
     "statusCode": 200,

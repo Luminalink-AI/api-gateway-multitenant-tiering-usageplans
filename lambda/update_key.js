@@ -47,6 +47,7 @@ async function updateKeyById(tableName, item, jwt) {
     }),
     UpdateExpression: "SET #N = :n, #D = :d, #E = :e",
     ConditionExpression: "#O = :o",
+    ReturnValues: "UPDATED_NEW"
   });
 
   try {
